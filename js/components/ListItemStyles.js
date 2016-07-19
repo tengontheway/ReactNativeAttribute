@@ -17,9 +17,15 @@ const ListItemStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  cmIcon: {
+  cmSmallIcon: {
     width: 20,
     height: 20,
+    resizeMode: 'contain',
+  },
+  cmMiddleIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
   },
   lineContainer: {
       flexDirection:'row', 
@@ -41,7 +47,24 @@ const ListItemStyles = StyleSheet.create({
     backgroundColor: '#C7C7C7',
     marginLeft: 20,
     marginRight: 20,
+  },
+  // 对象组的首间隔(从ScrollView到第一个元素)
+  itemGroupSpaceFirst: {
+    marginTop: 24,
+  },
+  itemGroupSpaceOthers: {
+    marginTop: 32,
   }
 });
+
+var ListItemTypes = {
+  T_F : 1,    //Text                    >
+  T_T : 2,    //Text              Text  
+  T_TF : 3,   //Text              Text  >
+  T_SPF : 4,   //Text             SmallPic   >
+  T_MPF : 5,   //Text             MiddlePic   >
+  PT_F : 6,   //PicText                 >
+}
+
 
 export default ListItemStyles;

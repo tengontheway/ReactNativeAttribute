@@ -13,12 +13,14 @@ import {
 export default class ListItem extends Component {
     static propTypes = {
         onPress: React.PropTypes.func,
+        clickable: React.PropTypes.bool,      // default is true
         onRenderLineLeft: React.PropTypes.func,
         onRenderLineRight: React.PropTypes.func,
         title: React.PropTypes.string.isRequired,
         subTitle: React.PropTypes.string,
         marginLeft: React.PropTypes.number,
         marginRight: React.PropTypes.number,
+        height: React.PropTypes.number,
     }
 
     // 构造
@@ -28,10 +30,16 @@ export default class ListItem extends Component {
         this.state = {
             isClicking: false
         };
+
+        if (typeof(this.props.clickable) === "undefined") {
+            this.clickable = true;
+        } else {
+            this.clickable = this.props.clickable;
+        }
       }
 
     _onPress() {
-        if (this.props.onPress) {
+        if (this.clickable && this.props.onPress) {
             this.props.onPress();
         }
     }
@@ -88,7 +96,9 @@ export default class ListItem extends Component {
                 onPress={()=>this._onPress() }
                 onPressIn={()=>this.onPressIn() }
                 onPressOut={()=>this.onPressOut() } >
-                    <View style={[styles.background, this.state.isClicking? {backgroundColor:'#D9D9D9'}:{backgroundColor:'#fff'}]}>
+                    <View style={[styles.background, 
+                        this.props.height && this.props.height >= 0? {height: this.props.height}:null, 
+                        this.state.isClicking && this.clickable? {backgroundColor:'#D9D9D9'}:{backgroundColor:'#fff'}]}>
                         {line}
                     </View>
             </TouchableOpacity>

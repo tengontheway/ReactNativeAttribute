@@ -43,12 +43,12 @@ class MainView extends Component {
         hideNav: false,
       },{
         key:1,
-        title:"A weather app",
+        title:"Demo2",
         component: Demo2,
         isFA: false,
         size:60,
         color:"#90bdc1",
-        hideNav: true,
+        hideNav: false,
       }]
     }
   }
@@ -86,6 +86,7 @@ class MainView extends Component {
 class ReactNativeAttribute extends Component {
   constructor(props) {
       super(props);
+
   }
   
   

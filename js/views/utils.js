@@ -3,6 +3,8 @@
 import React,{PixelRatio} from 'react-native';
 import Dimensions from 'Dimensions';
 
+var www = Dimensions.get('window').width;
+
 const Util = {
   ratio: PixelRatio.get(),
   pixel: 1 / PixelRatio.get(),

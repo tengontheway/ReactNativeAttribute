@@ -30,12 +30,75 @@ export default class Demo1 extends Component {
       </View>
     );
   }
+
+  _renderGroupSpaceFrist() {
+    return (
+      <View style={ListItemStyles.itemGroupSpaceFirst}>
+      </View>
+    );
+  }
+
+  _renderGroupSpaceOthers() {
+    return (
+      <View style={ListItemStyles.itemGroupSpaceOthers}>
+      </View>
+    );
+  }
   
   render() {
     var middleLine = this._renderMiddleLine();
 
+    var firstSpace = this._renderGroupSpaceFrist();
+    var otherSpace = this._renderGroupSpaceOthers();
+
     return (
       <ScrollView style={ListItemStyles.scrollViewBG}>
+        
+        {firstSpace}
+
+        <ListItem 
+          title="头像"
+          onPress={()=>{
+            alert("QQ聊天");
+          }}
+          height= {60}
+          onRenderLineRight={
+            ()=> {
+              return (
+                <View style={ListItemStyles.lineContainer}>
+                  <View style={ListItemStyles.listItemPaddingRight}>
+                    <Image style={[ListItemStyles.cmMiddleIcon]} source={require('./img/icon.png')} />
+                  </View>
+                  <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
+                  </View>
+              );
+            }
+          }
+        ></ListItem>
+
+        {middleLine}
+
+        <ListItem 
+          title="我的二维码"
+          onPress={()=>{
+            alert("我的二维码");
+          }}
+          onRenderLineRight={
+            ()=> {
+              return (
+                <View style={ListItemStyles.lineContainer}>
+                  <View style={ListItemStyles.listItemPaddingRight}>
+                    <Image style={[ListItemStyles.cmSmallIcon]} source={require('./img/icon.png')} />
+                  </View>
+                  <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
+                  </View>
+              );
+            }
+          }
+        ></ListItem>
+
+        {middleLine}
+
         <ListItem 
           title="QQ聊天"
           onPress={()=>{
@@ -51,7 +114,7 @@ export default class Demo1 extends Component {
             ()=> {
               return (
                 <View style={ListItemStyles.lineContainer}>
-                  <Image style={ListItemStyles.cmIcon} source={require('./img/icon.png')} />
+                  <Image style={ListItemStyles.cmSmallIcon} source={require('./img/icon.png')} />
                   <Text style={ListItemStyles.listItemPaddingLeft}>微信聊天</Text>
                 </View>
               );
@@ -69,6 +132,7 @@ export default class Demo1 extends Component {
 
         <ListItem 
           title="微信号"
+          clickable={false}
           onRenderLineRight={
             ()=> {
               return (
@@ -76,12 +140,15 @@ export default class Demo1 extends Component {
               );
             }
           }
-          onPress={()=>{
-            alert("微信号：wc250en007");
-          }}
         ></ListItem>
 
-        {middleLine}
+
+
+
+        {otherSpace}
+
+
+
 
         <ListItem 
           title="性别"
@@ -89,7 +156,7 @@ export default class Demo1 extends Component {
             ()=> {
               return (
                  <View style={ListItemStyles.lineContainer}>
-                    <Text style={[ListItemStyles.textRight, ListItemStyles.listItemPaddingRight]}>你好</Text>
+                    <Text style={[ListItemStyles.textRight, ListItemStyles.listItemPaddingRight]}>男</Text>
                     <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
                 </View>
               );
@@ -97,6 +164,23 @@ export default class Demo1 extends Component {
           }
           onPress={()=>{
             alert("性别");
+          }}
+        ></ListItem>
+
+         {middleLine}
+
+        <ListItem 
+          title="仅提供预览,无法点击"
+          clickable={false}
+          onRenderLineRight={
+            ()=> {
+              return (
+                 <Text style={[ListItemStyles.listItemPaddingLeft, ListItemStyles.textRight]}>已开启</Text>
+              );
+            }
+          }
+          onPress={()=>{
+            alert("无法点击触发消息，仅提供预览");
           }}
         ></ListItem>
 
