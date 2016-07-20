@@ -25,54 +25,101 @@ export default class Demo2 extends Component {
       this.data = [
         {
           type: ListItemTypes.T_F,
-          title: '微信号',
+          title: '住址T_F',
           subTitle: '',
           img: null,
           clickable: true,
           height: -1,     //默认
           onPress: ()=>{ alert("onpress")},
-          onRenderLineRight: () => {
-            return (
-                <View style={ListItemStyles.lineContainer}>
-                  <View style={ListItemStyles.listItemPaddingRight}>
-                    <Image style={[ListItemStyles.cmMiddleIcon]} source={require('./img/icon.png')} />
-                  </View>
-                  <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
-                  </View>
-              );
-          },
+          onRenderLineRight: null,
           onRenderLineLeft: null,
         },
         {
           type: ListItemTypes.T_T,
-          title: '微信号',
+          title: '微信号T_T',
           subTitle: 'wc250en007',
           img: null,
           clickable: true,
           height: -1,     //默认
           onPress: ()=>{ alert("onpress")},
-          onRenderLineRight: () => {
-            return (
-                <View style={ListItemStyles.lineContainer}>
-                  <View style={ListItemStyles.listItemPaddingRight}>
-                    <Image style={[ListItemStyles.cmMiddleIcon]} source={require('./img/icon.png')} />
-                  </View>
-                  <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
-                  </View>
-              );
-          },
+          onRenderLineRight: null,
           onRenderLineLeft: null,
         },
         {
           type: ListItemTypes.T_SPF,
-          title: '微信号',
-          subTitle: 'wc250en007',
+          title: '标准行小图T_SPF',
+          subTitle: '',
           img: require('./img/icon.png'),
           clickable: true,
           height: -1,     //默认
           onPress: ()=>{ alert("onpress")},
-          onRenderLineRight: () => {
-            return (
+          onRenderLineRight: null,
+          onRenderLineLeft: null,
+        },
+        {
+          type: ListItemTypes.T_MPF,
+          title: '大行大图T_MPF',
+          subTitle: '',
+          img: require('./img/icon.png'),
+          clickable: true,
+          height: 60,     //默认
+          onPress: ()=>{ alert("onpress")},
+          onRenderLineRight: null,
+          onRenderLineLeft: null,
+        },
+        {
+          type: ListItemTypes.T_TF,
+          title: '性别T_TF',
+          subTitle: '男',
+          img: null,
+          clickable: true,
+          height: -1,     //默认
+          onPress: ()=>{ alert("onpress")},
+          onRenderLineRight: null,
+          onRenderLineLeft: null,
+        },
+        {
+          type: ListItemTypes.PT_F,
+          title: '图+文PT_F',
+          subTitle: '',
+          img: require('./img/icon.png'),
+          clickable: true,
+          height: -1,     //默认
+          onPress: null,
+          onRenderLineRight: null,
+          onRenderLineLeft: null,
+        },
+        {
+          type: ListItemTypes.T_T,
+          title: '只读行T_T',
+          subTitle: '开启无法点击',
+          img: null,
+          clickable: false,
+          height: -1,     //默认
+          onPress: null,
+          onRenderLineRight: null,
+          onRenderLineLeft: null,
+        },
+
+        ,
+        {
+          type: ListItemTypes.CUSTOM,
+          title: '',
+          subTitle: '',
+          img: null,
+          clickable: true,
+          height: 60,     //默认
+          onPress: null,
+          onRenderLineLeft: ()=> {
+              return (
+                <View style={ListItemStyles.lineContainer}>
+                  <Image style={ListItemStyles.cmSmallIcon} source={require('./img/icon.png')} />
+                  <Text style={ListItemStyles.listItemPaddingLeft}>定制行</Text>
+                </View>
+              );
+            },
+          onRenderLineRight: ()=> {
+              return (
                 <View style={ListItemStyles.lineContainer}>
                   <View style={ListItemStyles.listItemPaddingRight}>
                     <Image style={[ListItemStyles.cmMiddleIcon]} source={require('./img/icon.png')} />
@@ -80,9 +127,10 @@ export default class Demo2 extends Component {
                   <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
                   </View>
               );
-          },
-          onRenderLineLeft: null,
-        }
+            },
+          
+        },
+        
       ];
   }
 

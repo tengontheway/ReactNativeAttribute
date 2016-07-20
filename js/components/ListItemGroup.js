@@ -39,19 +39,20 @@ export default class ListItemGroup extends Component {
         );
     }
 
-    //  _renderGroupSpaceFrist() {
-    //     return <View style={ListItemStyles.itemGroupSpaceFirst}>
-    //     </View>
-    // }
+     _renderGroupSpaceFrist() {
+        return <View style={ListItemStyles.itemGroupSpaceFirst}>
+        </View>
+    }
 
-    // _renderGroupSpaceOthers() {
-    //     return <View style={ListItemStyles.itemGroupSpaceOthers}>
-    //     </View>
-    // }
+    _renderGroupSpaceOthers() {
+        return <View style={ListItemStyles.itemGroupSpaceOthers}>
+        </View>
+    }
 
     LineT_F(elem) {
         return <ListItem 
           title={elem.title}
+          height={elem.height}
           clickable={elem.clickable}
           onPress={elem.onPress}
         ></ListItem>
@@ -59,6 +60,7 @@ export default class ListItemGroup extends Component {
     LineT_T(elem) {
         return <ListItem 
           title={elem.title}
+          height={elem.height}
           clickable={elem.clickable}
           onPress={elem.onPress}
           onRenderLineRight={
@@ -71,9 +73,29 @@ export default class ListItemGroup extends Component {
         ></ListItem>
     }
 
-    lineT_SPF(elem) {
+    LineT_TF(elem) {
+        return <ListItem 
+          title={elem.title}
+          height={elem.height}
+          clickable={elem.clickable}
+          onPress={elem.onPress}
+          onRenderLineRight={
+            ()=> {
+              return (
+                 <View style={ListItemStyles.lineContainer}>
+                    <Text style={[ListItemStyles.textRight, ListItemStyles.listItemPaddingRight]}>{elem.subTitle}</Text>
+                    <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
+                </View>
+              );
+            }
+          }
+        ></ListItem>
+    }
+
+    lineT_PF(elem, type) {
         return <ListItem 
                 title={elem.title}
+                height={elem.height}
                 clickable={elem.clickable}
                 onPress={elem.onPress}
                 onRenderLineRight={
@@ -81,7 +103,7 @@ export default class ListItemGroup extends Component {
                     return (
                         <View style={ListItemStyles.lineContainer}>
                         <View style={ListItemStyles.listItemPaddingRight}>
-                            <Image style={[ListItemStyles.cmSmallIcon]} source={elem.img} />
+                            <Image style={[type === 'small' ? ListItemStyles.cmSmallIcon : ListItemStyles.cmMiddleIcon]} source={elem.img} />
                         </View>
                         <Text style={[ListItemStyles.textRight, {fontWeight: 'bold'}]}>></Text>
                         </View>
@@ -91,22 +113,49 @@ export default class ListItemGroup extends Component {
                 ></ListItem>  
     }
 
+    linePT_F(elem) {
+        return <ListItem 
+                title={elem.title}
+                height={elem.height}
+                clickable={elem.clickable}
+                onPress={elem.onPress}
+                onRenderLineLeft={
+                    ()=> {
+                    return (
+                        <View style={ListItemStyles.lineContainer}>
+                        <Image style={ListItemStyles.cmSmallIcon} source={elem.img} />
+                        <Text style={ListItemStyles.listItemPaddingLeft}>{elem.title}</Text>
+                        </View>
+                    );
+                    }
+                }
+                ></ListItem>  
+    }
+
+    lineCustom(elem) {
+        return <ListItem 
+                title={elem.title}
+                height={elem.height}
+                clickable={elem.clickable}
+                onPress={elem.onPress}
+                onRenderLineLeft={elem.onRenderLineLeft}
+                onRenderLineRight={elem.onRenderLineRight}
+                ></ListItem>
+    }
+
     render() {
-        var middleLine = this._renderMiddleLine();
-        // alert(middleLine);
-
-        // var firstSpace = this._renderGroupSpaceFrist();
-        // var otherSpace = this._renderGroupSpaceOthers();
-
-
-        var lines = this.props.data.map((elem, index) => {
-            // var line = index === this.props.data.length - 1 ?  null : middleLine;
+        // 所有行={行 + 分割线}
+        var rows = this.props.data.map((elem, index) => {
             return (
-                <View>
+                <View key={index}>
                 {
                     elem.type === ListItemTypes.T_F ? this.LineT_F(elem) :
                     elem.type === ListItemTypes.T_T ? this.LineT_T(elem) : 
-                    elem.type === ListItemTypes.T_SPF ? this.lineT_SPF(elem) : null 
+                    elem.type === ListItemTypes.T_TF ? this.LineT_TF(elem) :
+                    elem.type === ListItemTypes.T_SPF ? this.lineT_PF(elem, 'small') : 
+                    elem.type === ListItemTypes.T_MPF ? this.lineT_PF(elem, 'middle') : 
+                    elem.type === ListItemTypes.PT_F ? this.linePT_F(elem) : 
+                    elem.type === ListItemTypes.CUSTOM ? this.lineCustom(elem) :null 
                 }
 
                 {
@@ -120,6 +169,7 @@ export default class ListItemGroup extends Component {
             );
         });
 
+        // 间距 + 所有行
         return (
             <View>
                 {
@@ -131,7 +181,7 @@ export default class ListItemGroup extends Component {
                     </View>
                 }
 
-                {lines}
+                {rows}
             </View>
         );
     }

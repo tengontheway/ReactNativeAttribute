@@ -140,6 +140,9 @@ export default class Demo1 extends Component {
               );
             }
           }
+          onPress={()=>{
+            alert("微信号：wc250en007");
+          }}
         ></ListItem>
 
 
@@ -191,5 +194,5 @@ export default class Demo1 extends Component {
 
 
 const styles = StyleSheet.create({
-
+  
 });

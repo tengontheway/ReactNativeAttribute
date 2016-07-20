@@ -64,6 +64,7 @@ var ListItemTypes = {
   T_SPF : 4,   //Text             SmallPic   >
   T_MPF : 5,   //Text             MiddlePic   >
   PT_F : 6,   //PicText                 >
+  CUSTOM : 7, // Custom your own line
 };
 
 
